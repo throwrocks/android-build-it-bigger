@@ -1,21 +1,31 @@
 package pop.nfresh.jokes_activity;
 
-import com.udacity.gradle.jokes.Joker;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 
 /**
  * Created by JoseE on 12/13/2015.
  */
-public class JokesActivity {
+public class JokesActivity extends AppCompatActivity{
 
 
-    public String getJoke(){
+    @Override
+    protected void onStart() {
 
-        Joker newJoke = new Joker();
-        String joke = newJoke.getJoke();
-        return joke;
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String joke = bundle.getString("joke");
 
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, joke, duration);
+        toast.show();
+
+        super.onStart();
     }
-
-
 }
