@@ -21,8 +21,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+        //Get a new joke
+        Joker newJoke = new Joker();
+        String joke = newJoke.getJoke();
+        //Pass the joke to the endpoint
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, joke));
     }
 
 
