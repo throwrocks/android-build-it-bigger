@@ -28,4 +28,10 @@ public class JokesActivity extends AppCompatActivity{
 
         super.onStart();
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 }
