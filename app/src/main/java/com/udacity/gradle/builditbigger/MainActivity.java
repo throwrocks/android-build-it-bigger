@@ -10,13 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.udacity.gradle.jokes.Joker;
 
 import pop.nfresh.jokes_activity.JokesActivity;
 
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements AsyncResponse{
+    EndpointsAsyncTask asyncTask = new EndpointsAsyncTask();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +47,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
 
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, ""));
+        //this to set delegate/listener back to this class
+        asyncTask.delegate = this;
+
+        //execute the async task
+        asyncTask.execute();
+
+    }
+
+    //this override the implemented method from asyncTask
+    @Override
+    public void processFinish(String output){
+        //Here you will receive the result fired from async class
+        //of onPostExecute(result) method.
+        // Launch the JokeActivity
+        Intent launchJoke = new Intent(this, JokesActivity.class);
+        launchJoke.putExtra("joke", output);
+
+        this.startActivity(launchJoke);
     }
 
 
