@@ -16,12 +16,14 @@ public class AsyncTaskAndroidTest extends InstrumentationTestCase implements Asy
     EndpointsAsyncTask servletPostAsyncTask;
     Context context;
 
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         latch = new CountDownLatch(1);
         context = getInstrumentation().getTargetContext();
         servletPostAsyncTask = new EndpointsAsyncTask();
+        servletPostAsyncTask.delegate = this;
     }
 
     public void testVerifyAsyncTaskResponse() throws Throwable {
