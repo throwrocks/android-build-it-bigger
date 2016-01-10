@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by shivam on 7/21/15.
+ * Modified by Jose Lopez on 1/1/16.
  */
 public class AsyncTaskAndroidTest extends InstrumentationTestCase implements AsyncResponse {
     CountDownLatch latch;
