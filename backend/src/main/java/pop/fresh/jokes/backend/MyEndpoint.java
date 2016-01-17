@@ -9,6 +9,7 @@ package pop.fresh.jokes.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.udacity.gradle.jokes.Joker;
 
 import javax.inject.Named;
 
@@ -24,12 +25,16 @@ import javax.inject.Named;
 )
 public class MyEndpoint {
 
-    /** A simple endpoint method that takes a name and says Hi back */
-    @ApiMethod(name = "sayHi")
-    public MyBean sayHi(@Named("name") String name) {
+    /** A simple endpoint method that gets a joke from the jokes lib and returns it*/
+    @ApiMethod(name = "tellJoke")
+    public MyBean tellJoke() {
+
+        // Get a joke
+        Joker newJoke = new Joker();
+        String joke = newJoke.getJoke();
 
         MyBean response = new MyBean();
-        response.setData(name);
+        response.setData(joke);
         return response;
     }
 

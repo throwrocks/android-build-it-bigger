@@ -44,12 +44,12 @@ public class EndpointsAsyncTask extends AsyncTask<String, Void, String> {
         }
 
         // Get a joke
-        Joker newJoke = new Joker();
-        String joke = newJoke.getJoke();
+        //Joker newJoke = new Joker();
+        //String joke = newJoke.getJoke();
 
 
         try {
-            return myApiService.sayHi(joke).execute().getData();
+            return myApiService.tellJoke().execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }
